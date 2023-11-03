@@ -1,8 +1,9 @@
 const notesContainer = document.querySelector(".notes-container");
 const createBtn = document.querySelector(".btn");
+const addButton = document.getElementById("AddButton");
 
 function showNotes() {
-    //this will fetch data from local storage
+    // This will fetch data from local storage
     const notes = localStorage.getItem("notes");
     if (notes) {
         notesContainer.innerHTML = notes;
@@ -11,7 +12,7 @@ function showNotes() {
 showNotes();
 
 function updateStorage() {
-    //this will save data in local storage
+    // This will save data in local storage
     const notes = document.querySelectorAll(".input-box");
     const notesText = [];
     notes.forEach((note) => {
@@ -22,12 +23,23 @@ function updateStorage() {
 
 createBtn.addEventListener("click", () => {
     let inputBox = document.createElement("p");
-    let img = document.createElement("img");
     inputBox.className = "input-box";
     inputBox.setAttribute("contenteditable", "true");
-    img.src = "images/delete.png";
-    notesContainer.appendChild(inputBox).appendChild(img);
+    notesContainer.appendChild(inputBox);
     updateStorage();
+});
+
+addButton.addEventListener("click", () => {
+    // Get the last created input-box
+    const inputBoxes = document.querySelectorAll(".input-box");
+    const lastInputBox = inputBoxes[inputBoxes.length - 1];
+    
+    if (lastInputBox.innerHTML.trim() !== "") {
+        let img = document.createElement("img");
+        img.src = "images/delete.png";
+        lastInputBox.appendChild(img);
+        updateStorage();
+    }
 });
 
 notesContainer.addEventListener("click", function (e) {
