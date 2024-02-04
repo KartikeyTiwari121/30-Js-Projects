@@ -75,7 +75,7 @@ ul li::before{
     top: 12px;
     left: 8px;
 }
-ul li.checked{   /*here gap b/w li $ checked matter a lot, it will change output  */
+ul li.checked{   /*here gap b/w li & checked matter a lot, it will change output  */
     color: #555;
     text-decoration: line-through;
 }
